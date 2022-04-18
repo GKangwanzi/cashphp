@@ -194,7 +194,7 @@
                
             </div>
             <div class="content-body">
- 
+
                 <!-- Input Sizing start -->
                 <section id="input-sizing">
                     <div class="row match-height">
@@ -206,17 +206,23 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <form action="pay.php" method="POST">
+                                            <div class="form-group">
+                                                <label for="defaultInput">Names</label>
+                                                <input id="names" class="form-control" type="text" placeholder="Names" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="defaultInput">Email</label>
+                                                <input id="emailinput" class="form-control" type="email" placeholder="Email" />
+                                            </div>
                                             <div class="form-group">
                                                 <label for="defaultInput">Phone Number</label>
-                                                <input id="mobilenumber" name="number" class="form-control" type="text" placeholder="Phone Number E.g 256780000000" />
+                                                <input id="mobilenumber" class="form-control" type="text" placeholder="Phone Number E.g 256780000000" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="defaultInput">Amount</label>
-                                                <input id="amountdeposit" name="amount" class="form-control" type="number" placeholder="Amount: e.g 5000" />
+                                                <input id="amountdeposit" class="form-control" type="number" placeholder="Amount: e.g 5000" />
                                             </div>
-                                            <button class="btn btn-primary" type="submit">Pay Now</button>
-                                        </form>
+                                            <button onclick="initiatedeposit()" class="btn btn-primary" type="submit">Pay Now</button>
                                         </div>
                                     </div>
                                 </div>

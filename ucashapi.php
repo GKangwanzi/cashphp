@@ -14,30 +14,18 @@ class ucash{
         $response = file_get_contents($live_url);
         $data = json_decode($response, true);
 
-        $ubal = $data["resuldatat"]; 
+        $ubal = $data["resuldatat"];
         echo $ubal["Status"];
     }
     
     public function RecieveApiPaymentReceipt() {
         //deposit feedback from the callback after initiating deposit transaction
-        $json = file_get_contents('php://input');
-        $data = json_decode($json);
-       
-        if($data->transactionreference){
-            $db = new DB();
-            foreach ($db->query("SELECT * FROM message_loads WHERE phoneno='".$data->msdn."' AND id=(SELECT MAX(id) FROM message_loads WHERE phoneno='".$data->msdn."')")as $row) {
-                $db->query("UPDATE message_loads SET transaction_reference = '".$data->transactionreference."' WHERE id='".$row['id']."'");
-            }
-        }
-
-        if($data->apipaymentreceipt){
-            $message = "Deposit of: ".$data->amount." from Isingiro SACCO.";
-            MESSAGESCENTER::SendSMS("256788980225", $message);
-            $db = new DB();
-            foreach ($db->query("SELECT * FROM message_loads WHERE phoneno='".$data->msdn."' AND id=(SELECT MAX(id) FROM message_loads WHERE phoneno='".$data->msdn."')")as $row) {
-                $db->query("UPDATE message_loads SET transactionID = '".$data->transactionid."'  WHERE id = '".$row["id"]."'");
-                $db->query("UPDATE message_account SET messages = messages + '".$row["messages"]."'  WHERE id = '1'");
-            }
+        if ($_GET['apipaymentreceipt']) { 
+            $phone = $_GET['msdn'];
+            $amount = $_GET['amount'];
+            $transactionID = $_GET['transactionid'];
+            $TransactionReference = $_GET['transactionreference']; 
+            //use these to variable save in the database.
         }
     }
     
@@ -66,6 +54,21 @@ class ucash{
             //use these to variable save in the database.
 
         }
+    }
+
+    public static function SendSMS($username,$password,$sender,$number,$message) { 
+        $url = "sms.thepandoranetworks.com/API/sendSMS/?";
+        $parameters="number=[number]&message=[message]&username=[username]&password=[password]&sender=[sender]";
+        $parameters = str_replace("[message]", urlencode($message), $parameters);
+        $parameters = str_replace("[sender]", urlencode($sender),$parameters);
+        $parameters = str_replace("[number]", urlencode($number),$parameters);
+        $parameters = str_replace("[username]", urlencode($username),$parameters);
+        $parameters = str_replace("[password]", urlencode($password),$parameters);
+        $live_url="https://".$url.$parameters;
+        $parse_url=file($live_url);
+        $response = $parse_url[0];
+
+        return json_decode($response, true);
     }
 }
 
