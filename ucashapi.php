@@ -1,8 +1,8 @@
 <?php
 class ucash{
     
-    private $username = "Bantu"; // provide your ucash username
-    private $apikey = "m7AC3c8vzygxVPLHepwioTEB19SUnD2usIR6FWaZ"; // provide your ucash apikey
+    private $username = "Kangwanzi"; // provide your ucash username
+    private $apikey = "Lh51VcOnYjalNetQf6RmkJEPAZigI7rM4U8DXbxw"; // provide your ucash apikey
     private $url = "https://ucatchapps.com/apicatch/index.php?";
     
    
