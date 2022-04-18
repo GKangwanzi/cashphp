@@ -1,7 +1,6 @@
 <?php
 require_once 'ucashapi.php';
-$pay = new payments();
-$pay->InitiateMethods();
+
 
 class payments{
     public function InitiateMethods() {

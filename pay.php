@@ -6,5 +6,5 @@ $number = $_POST['number'];
 
 $initiate = new ucash();
 $initiate->depositmoney($number, $amount);
- 
+
 ?>

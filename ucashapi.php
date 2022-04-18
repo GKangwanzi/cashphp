@@ -1,10 +1,11 @@
 <?php
 class ucash{
     
-    private $username = "yvannlloyd"; // provide your ucash username
-    private $apikey = "KMeFRWH1CTjsA09OmhBvud46SJnzrPGqaYpkbEiL"; // provide your ucash apikey
+    private $username = "Bantu"; // provide your ucash username
+    private $apikey = "m7AC3c8vzygxVPLHepwioTEB19SUnD2usIR6FWaZ"; // provide your ucash apikey
     private $url = "https://ucatchapps.com/apicatch/index.php?";
     
+   
     
     public function depositmoney($phone, $amount) {
         //initiate to deposit money using mobile money 
