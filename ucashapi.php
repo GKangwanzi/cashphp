@@ -1,7 +1,6 @@
 <?php
-include "db.php";
 
-class ucash{
+class ucash{ 
     
     private $username = "Kangwanzi"; // provide your ucash username
     private $apikey = "Lh51VcOnYjalNetQf6RmkJEPAZigI7rM4U8DXbxw"; // provide your ucash apikey
@@ -14,12 +13,15 @@ class ucash{
         $live_url= $this->url.$parameters;
         $response = file_get_contents($live_url);
         $data = json_decode($response, true);
-
-
-        mysqli_query($con, "INSERT INTO deposit (phone, amount, status) VALUES ('$phone', '$amount', 'pending')");
-
         $ubal = $data["resuldatat"];
         echo $ubal["Status"];
+        $status = $ubal["TransactionStatus"];
+        $ref = $ubal["TransactionReference"];
+
+        $con = mysqli_connect("localhost","root","","cash");
+        mysqli_query($con, "INSERT INTO deposit (phone, amount, status, ref) VALUES ('$phone', '$amount', '$status', '$ref')");
+
+
     }
     
     public function RecieveApiPaymentReceipt() {
@@ -30,6 +32,7 @@ class ucash{
             $transactionID = $_GET['transactionid'];
             $TransactionReference = $_GET['transactionreference']; 
             //use these to variable save in the database.
+
         }
     }
     
