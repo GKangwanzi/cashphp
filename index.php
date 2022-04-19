@@ -206,23 +206,18 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="defaultInput">Names</label>
-                                                <input id="names" class="form-control" type="text" placeholder="Names" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="defaultInput">Email</label>
-                                                <input id="emailinput" class="form-control" type="email" placeholder="Email" />
-                                            </div>
+                                            <form action="pay.php" method="post">
+                                            
                                             <div class="form-group">
                                                 <label for="defaultInput">Phone Number</label>
-                                                <input id="mobilenumber" class="form-control" type="text" placeholder="Phone Number E.g 256780000000" />
+                                                <input id="mobilenumber" name="phone" class="form-control" type="text" placeholder="Phone Number E.g 256780000000" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="defaultInput">Amount</label>
-                                                <input id="amountdeposit" class="form-control" type="number" placeholder="Amount: e.g 5000" />
+                                                <input id="amountdeposit" name="amount" class="form-control" type="number" placeholder="Amount: e.g 5000" />
                                             </div>
-                                            <button onclick="initiatedeposit()" class="btn btn-primary" type="submit">Pay Now</button>
+                                            <button class="btn btn-primary" name="submit" type="submit">Pay Now</button>
+                                        </form>
                                         </div>
                                     </div>
                                 </div>

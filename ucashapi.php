@@ -1,10 +1,11 @@
 <?php
+include "db.php";
+
 class ucash{
     
     private $username = "Kangwanzi"; // provide your ucash username
     private $apikey = "Lh51VcOnYjalNetQf6RmkJEPAZigI7rM4U8DXbxw"; // provide your ucash apikey
     private $url = "https://ucatchapps.com/apicatch/index.php?";
-    
    
     
     public function depositmoney($phone, $amount) {
@@ -13,6 +14,9 @@ class ucash{
         $live_url= $this->url.$parameters;
         $response = file_get_contents($live_url);
         $data = json_decode($response, true);
+
+
+        mysqli_query($con, "INSERT INTO deposit (phone, amount, status) VALUES ('$phone', '$amount', 'pending')");
 
         $ubal = $data["resuldatat"];
         echo $ubal["Status"];
